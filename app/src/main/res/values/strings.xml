@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FireBaseApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="web_client_id">962054701196-21ipct9f1ogfv8jjli90vvtd9140rj6b.apps.googleusercontent.com</string>
+</resources>
