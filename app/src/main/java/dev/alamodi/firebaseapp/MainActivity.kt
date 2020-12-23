@@ -3,6 +3,7 @@ package dev.alamodi.firebaseapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -13,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity(),
     LoginFragment.CallBacks, SignupFragment.CallBacks, PhoneNumFragment.Callbacks {
@@ -66,9 +68,17 @@ class MainActivity : AppCompatActivity(),
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("TAG", "Google sign in failed", e)
+                Toast.makeText(this,task.exception.toString(),Toast.LENGTH_LONG).show()
                 // [START_EXCLUDE]
 //                updateUI(null)
                 // [END_EXCLUDE]
+            }
+        }else{
+            try{
+                Toast.makeText(this,resultCode.toString(),Toast.LENGTH_LONG).show()
+
+            }catch (e:Exception){
+                Toast.makeText(this,"cast error",Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -90,6 +100,7 @@ class MainActivity : AppCompatActivity(),
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("TAG", "signInWithCredential:success")
                     val user = auth.currentUser
+                    replaceFragment(MainFragment.newInstance())
 //                    updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -97,6 +108,7 @@ class MainActivity : AppCompatActivity(),
                     // [START_EXCLUDE]
                     // [END_EXCLUDE]
 //                    updateUI(null)
+                    Toast.makeText(this,task.exception.toString(), Toast.LENGTH_LONG).show()
                 }
 
                 // [END_EXCLUDE]

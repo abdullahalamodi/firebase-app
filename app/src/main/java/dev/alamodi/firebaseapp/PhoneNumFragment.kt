@@ -97,6 +97,7 @@ class PhoneNumFragment : Fragment(), VerifyCodeFragment.Callbacks {
 //                        Snackbar.LENGTH_SHORT).show()
                     // [END_EXCLUDE]
                 }
+                Toast.makeText(requireContext(),e.message.toString(),Toast.LENGTH_LONG).show()
 
                 // Show a message and update the UI
                 // [START_EXCLUDE]
@@ -132,7 +133,7 @@ class PhoneNumFragment : Fragment(), VerifyCodeFragment.Callbacks {
             .setPhoneNumber(phoneNumber)       // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(requireActivity())                 // Activity (for callback binding)
-            .setCallbacks(serverCallbacks)          // OnVerificationStateChangedCallbacks
+            .setCallbacks(serverCallbacks) // OnVerificationStateChangedCallbacks
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
         // [END start_phone_auth]
@@ -182,6 +183,7 @@ class PhoneNumFragment : Fragment(), VerifyCodeFragment.Callbacks {
                         // The verification code entered was invalid
                         // [START_EXCLUDE silent]
                         // [END_EXCLUDE]
+                        Toast.makeText(requireContext(),task.exception.toString(),Toast.LENGTH_LONG).show()
                     }
                     // [START_EXCLUDE silent]
                     // Update UI
